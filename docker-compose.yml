@@ -1,8 +1,11 @@
 version: '2'
 services:
+  web:
+    container_name: web
+    image: nginx
   nginx-proxy:
     container_name: nginx-proxy
-    build: nginx-proxy/.
+    build: ./nginx-proxy/.
     ports:
       - 80:80
       - 443:443
@@ -10,11 +13,5 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
       - ./nginx-proxy/conf.d:/etc/nginx/conf.d
     links:
-      - web1
-      - web2
-  web1:
-    container_name: web1
-    image: nginx
-  web2:
-    container_name: web2
-    image: nginx
+     - web 
+
